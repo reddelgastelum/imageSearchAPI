@@ -3,6 +3,7 @@
 
 // init project
 var express = require('express');
+var Search = require('bing.search')
 var app = express();
 
 // we've started you off with Express, 
@@ -13,17 +14,11 @@ app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (request, response) {
-  response.sendFile(__dirname + '/views/index.html');
-});
-
-app.get("/dreams", function (request, response) {
-  response.send(dreams);
-});
-
-// could also use the POST body instead of query string: http://expressjs.com/en/api.html#req.body
-app.post("/dreams", function (request, response) {
-  dreams.push(request.query.dream);
-  response.sendStatus(200);
+  var search = new Search('7a0d177c-ea53-4805-af1e-dd5cc4dddb21');
+  
+  search.web('Tutta Bella Neapolitan Pizzeria',{top: 5},function(err, results) {
+    console.log(err);
+  });
 });
 
 // Simple in-memory store for now
