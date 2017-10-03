@@ -26,7 +26,7 @@ app.get("/:q?", function (req, res) {
     q: queryStr,
     searchType: "image",
     num: 10, // Number of search results to return between 1 and 10, inclusive
-    start: 10
+    start: 20
   }, function(error, response) {
     console.log(response.queries);
     var temp = response.items;
