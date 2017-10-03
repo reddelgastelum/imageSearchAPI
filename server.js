@@ -19,15 +19,19 @@ db.once('open', function() {
 app.use(express.static('public'));
 
 app.get('/', function (req, res) {
-  console.log(true);
+  var arr = [];
   Search.find({}, function(err, search) {
     console.log(search);
-    res.send(search);
+    for (var i in search) {
+      var s = search[i];
+      arr.push({searchTerm:s.searchTerm,time:s.time});
+    }
+    res.send(arr);
   });
 });
 
 // http://expressjs.com/en/starter/basic-routing.html
-app.get("/:q?", function (req, res) {
+app.get("/search/:q?", function (req, res) {
   var result = {};
   var queryStr = req.params.q;
   var offset = req.query.offset * 10 - 9;
