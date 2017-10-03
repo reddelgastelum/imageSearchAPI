@@ -18,6 +18,14 @@ db.once('open', function() {
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
 
+app.get('/', function (req, res) {
+  console.log(true);
+  Search.find({}, function(err, search) {
+    console.log(search);
+    res.send(search);
+  });
+});
+
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/:q?", function (req, res) {
   var result = {};
@@ -26,8 +34,10 @@ app.get("/:q?", function (req, res) {
   
   var search = new Search({
     searchTerm:queryStr,
-    time:
+    time: new Date()
   });
+  
+  search.save();
   
   var googleSearch = new GoogleSearch({
     key:'AIzaSyCApkMK7aXTu2sICjTbvugeHeEpvC4fMfA',
@@ -48,10 +58,6 @@ app.get("/:q?", function (req, res) {
     }
     res.send(arr);
   });
-});
-
-app.get('/latest', function(req, res) {
-  
 });
 
 // listen for requests :)
