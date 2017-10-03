@@ -16,14 +16,14 @@ app.use(express.static('public'));
 app.get("/:q?", function (req, res) {
   var result = {};
   var queryStr = req.params.q;
-  var offset =
+  var offset = req.query.offset;
   var googleSearch = new GoogleSearch({
     key:'AIzaSyCApkMK7aXTu2sICjTbvugeHeEpvC4fMfA',
     cx:'005615984503445160763:mimerm0isbe'
   });
   
   googleSearch.build({
-    q: "tom",
+    q: queryStr,
     searchType: "image",
     num: 10, // Number of search results to return between 1 and 10, inclusive 
   }, function(error, response) {
