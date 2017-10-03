@@ -28,9 +28,9 @@ app.get("/:q?", function (req, res) {
     num: 10, // Number of search results to return between 1 and 10, inclusive
     start: 10
   }, function(error, response) {
-    console.log(response);
+    console.log(response.queries);
     var temp = response.items;
-    console.log(temp);
+    //console.log(temp);
     var arr = [];
     for (var i in temp) {
       result.url = temp[i].link;
