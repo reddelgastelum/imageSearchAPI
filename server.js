@@ -13,7 +13,7 @@ var app = express();
 app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function (request, response) {
+app.get("/", function (req, res) {
   var googleSearch = new GoogleSearch({
     key:'AIzaSyCApkMK7aXTu2sICjTbvugeHeEpvC4fMfA',
     cx:'005615984503445160763:mimerm0isbe'
@@ -24,7 +24,9 @@ app.get("/", function (request, response) {
     searchType: "image",
     num: 10, // Number of search results to return between 1 and 10, inclusive 
   }, function(error, response) {
-    console.log(response);
+    var lin
+    console.log(response.items);
+    res.send(response.items)
   });
 });
 
