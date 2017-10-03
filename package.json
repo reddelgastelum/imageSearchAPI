@@ -12,6 +12,7 @@
   "dependencies": {
     "bing.search": "^1.0.1",
     "express": "^4.15.4",
+    "google-search": "0.0.5",
     "request": "^2.83.0"
   },
   "engines": {
