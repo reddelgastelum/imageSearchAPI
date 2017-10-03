@@ -25,8 +25,10 @@ app.get("/:q?", function (req, res) {
   googleSearch.build({
     q: queryStr,
     searchType: "image",
-    num: 1, // Number of search results to return between 1 and 10, inclusive 
+    num: 10, // Number of search results to return between 1 and 10, inclusive
+    start: 10
   }, function(error, response) {
+    console.log(response);
     var temp = response.items;
     console.log(temp);
     var arr = [];
