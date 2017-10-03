@@ -27,7 +27,8 @@ app.get("/:q?", function (req, res) {
     searchType: "image",
     num: 10, // Number of search results to return between 1 and 10, inclusive 
   }, function(error, response) {
-    res.send(true);
+    console.log(response.items);
+    res.end();
   });
 });
 
