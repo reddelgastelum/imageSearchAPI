@@ -27,17 +27,19 @@ app.get("/:q?", function (req, res) {
     searchType: "image",
     num: 10
   }, function(error, response) {
-    res.send(response);
+    //console.log(response);
     var temp = response.items;
     var arr = [];
     for (var i in temp) {
+      //console.log(temp[i].link);
       result.url = temp[i].link;
       result.snippet = temp[i].snippet;
       result.context = temp[i].image.contextLink;
       result.thumbnail = temp[i].image.thumbnailLink;
+      console.log(result.url);
       arr.push(result);
     }
-    //res.send(arr);
+    res.send(arr);
   });
 });
 
