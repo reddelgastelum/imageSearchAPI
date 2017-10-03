@@ -25,19 +25,14 @@ app.get("/:q?", function (req, res) {
   googleSearch.build({
     q: queryStr,
     searchType: "image",
-    num: 10
+    num: 10,
+    start: offset
   }, function(error, response) {
     //console.log(response);
     var temp = response.items;
     var arr = [];
     for (var i in temp) {
-      //console.log(temp[i].link);
-      result.url = temp[i].link;
-      result.snippet = temp[i].snippet;
-      result.context = temp[i].image.contextLink;
-      result.thumbnail = temp[i].image.thumbnailLink;
-      console.log(result.url);
-      arr.push(result);
+      arr.push({url:temp[i].link,snippet:temp[i].snippet,context:temp[i].image.contextLink,thumbnail:temp[i].image.thumbnailLink});
     }
     res.send(arr);
   });
