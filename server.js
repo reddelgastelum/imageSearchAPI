@@ -21,15 +21,11 @@ app.get("/", function (request, response) {
   
   googleSearch.build({
     q: "tom",
-    start: 5,
-    fileType: "pdf",
-    gl: "tr", //geolocation, 
-    lr: "lang_tr",
+    searchType: "image",
     num: 10, // Number of search results to return between 1 and 10, inclusive 
-    siteSearch: "" // Restricts results to URLs from a specified site 
-}, function(error, response) {
-  console.log(response);
-});
+  }, function(error, response) {
+    console.log(response);
+  });
 });
 
 // Simple in-memory store for now
