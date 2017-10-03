@@ -14,10 +14,13 @@ app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function (request, response) {
-  var search = new Search('7a0d177c-ea53-4805-af1e-dd5cc4dddb21');
+  var search = new Search('8637b13076894935811ddeeacd29a9a1');
   
   search.web('Tutta Bella Neapolitan Pizzeria',{top: 5},function(err, results) {
-    console.log(err);
+    if (err) {
+      response.send(err);
+    }
+    response.send(results);
   });
 });
 
