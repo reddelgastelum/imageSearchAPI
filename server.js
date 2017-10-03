@@ -8,7 +8,12 @@ var GoogleSearch = require('google-search');
 var Search = require('./models/search')
 var app = express();
 
-mongoose.connect();
+mongoose.connect(process.env.DATABASE_URI);
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('Mongo connected to database ' + process.env.DATABASE_URI);
+});
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
@@ -19,7 +24,10 @@ app.get("/:q?", function (req, res) {
   var queryStr = req.params.q;
   var offset = req.query.offset * 10 - 9;
   
-  
+  var search = new Search({
+    searchTerm:queryStr,
+    time:
+  });
   
   var googleSearch = new GoogleSearch({
     key:'AIzaSyCApkMK7aXTu2sICjTbvugeHeEpvC4fMfA',
