@@ -16,7 +16,7 @@ app.use(express.static('public'));
 app.get("/:q?", function (req, res) {
   var result = {};
   var queryStr = req.params.q;
-  var offset = req.query.offset;
+  var offset = req.query.offset * 10 - 9;
   var googleSearch = new GoogleSearch({
     key:'AIzaSyCApkMK7aXTu2sICjTbvugeHeEpvC4fMfA',
     cx:'005615984503445160763:mimerm0isbe'
