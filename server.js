@@ -44,8 +44,8 @@ app.get("/search/:q?", function (req, res) {
   search.save();
   
   var googleSearch = new GoogleSearch({
-    key:'AIzaSyCApkMK7aXTu2sICjTbvugeHeEpvC4fMfA',
-    cx:'005615984503445160763:mimerm0isbe'
+    key:process.env.KEY,
+    cx:process.env.CX
   });
   
   googleSearch.build({
