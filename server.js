@@ -3,11 +3,12 @@
 
 // init project
 var express = require('express');
+var mongoose = require('mongoose');
 var GoogleSearch = require('google-search');
+var Search = require('./models/search')
 var app = express();
 
-// we've started you off with Express, 
-// but feel free to use whatever libs or frameworks you'd like through `package.json`.
+mongoose.connect();
 
 // http://expressjs.com/en/starter/static-files.html
 app.use(express.static('public'));
@@ -17,6 +18,9 @@ app.get("/:q?", function (req, res) {
   var result = {};
   var queryStr = req.params.q;
   var offset = req.query.offset * 10 - 9;
+  
+  
+  
   var googleSearch = new GoogleSearch({
     key:'AIzaSyCApkMK7aXTu2sICjTbvugeHeEpvC4fMfA',
     cx:'005615984503445160763:mimerm0isbe'
@@ -36,6 +40,10 @@ app.get("/:q?", function (req, res) {
     }
     res.send(arr);
   });
+});
+
+app.get('/latest', function(req, res) {
+  
 });
 
 // listen for requests :)
